@@ -11,8 +11,11 @@ const getHeaders = () => ({
 const handleResponse = async (res) => {
   if (res.status === 401) {
     localStorage.removeItem('token');
-    window.location.href = '/login';
-    return;
+    if (!window.location.pathname.includes('/login')) {
+      window.location.href = '/login';
+    }
+    const err = await res.json().catch(() => ({ message: 'Invalid credentials' }));
+    throw new Error(err.message || 'Invalid credentials');
   }
   if (res.status === 204) return null;
   if (!res.ok) {
