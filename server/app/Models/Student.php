@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Student extends Model
 {
@@ -32,5 +33,21 @@ class Student extends Model
                 $student->id = $max ? $max + 1 : $prefix + 1;
             }
         });
+    }
+
+    public function academicHistories(): HasMany {
+        return $this->hasMany(StudentAcademicHistory::class);
+    }
+    public function extraCurriculars(): HasMany {
+        return $this->hasMany(StudentExtraCurricular::class);
+    }
+    public function violations(): HasMany {
+        return $this->hasMany(StudentViolation::class);
+    }
+    public function skills(): HasMany {
+        return $this->hasMany(StudentSkill::class);
+    }
+    public function organizations(): HasMany {
+        return $this->hasMany(StudentOrganization::class);
     }
 }
