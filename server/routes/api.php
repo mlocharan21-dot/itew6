@@ -19,6 +19,7 @@ use App\Http\Controllers\Api\StudentAcademicHistoryController;
 use App\Http\Controllers\Api\StudentExtraCurricularController;
 use App\Http\Controllers\Api\StudentViolationController;
 use App\Http\Controllers\Api\StudentSkillController;
+use App\Http\Controllers\Api\StudentOrganizationController;
 
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -60,4 +61,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('students/{student}/skills',          [StudentSkillController::class, 'store']);
     Route::put('students/{student}/skills/{skill}',   [StudentSkillController::class, 'update']);
     Route::delete('students/{student}/skills/{skill}',[StudentSkillController::class, 'destroy']);
+
+    Route::get('students/{student}/organizations',                  [StudentOrganizationController::class, 'index']);
+    Route::post('students/{student}/organizations',                 [StudentOrganizationController::class, 'store']);
+    Route::put('students/{student}/organizations/{organization}',   [StudentOrganizationController::class, 'update']);
+    Route::delete('students/{student}/organizations/{organization}',[StudentOrganizationController::class, 'destroy']);
 });
