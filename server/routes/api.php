@@ -18,6 +18,7 @@ use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\StudentAcademicHistoryController;
 use App\Http\Controllers\Api\StudentExtraCurricularController;
 use App\Http\Controllers\Api\StudentViolationController;
+use App\Http\Controllers\Api\StudentSkillController;
 
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -54,4 +55,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('students/{student}/violations',              [StudentViolationController::class, 'store']);
     Route::put('students/{student}/violations/{violation}',   [StudentViolationController::class, 'update']);
     Route::delete('students/{student}/violations/{violation}',[StudentViolationController::class, 'destroy']);
+
+    Route::get('students/{student}/skills',           [StudentSkillController::class, 'index']);
+    Route::post('students/{student}/skills',          [StudentSkillController::class, 'store']);
+    Route::put('students/{student}/skills/{skill}',   [StudentSkillController::class, 'update']);
+    Route::delete('students/{student}/skills/{skill}',[StudentSkillController::class, 'destroy']);
 });
