@@ -15,6 +15,11 @@ use App\Models\Lesson;
 use App\Models\Curriculum;
 use App\Models\Schedule;
 use App\Models\FacultyAssignment;
+use App\Models\StudentAcademicHistory;
+use App\Models\StudentExtraCurricular;
+use App\Models\StudentViolation;
+use App\Models\StudentSkill;
+use App\Models\StudentOrganization;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -221,6 +226,85 @@ class DatabaseSeeder extends Seeder
         ];
         foreach ($assignments as $a) {
             FacultyAssignment::create($a);
+        }
+
+        // Student Academic Histories
+        $academicHistories = [
+            ['student_id' => 2600001, 'level' => 'elementary', 'school_name' => 'Mapua Elementary School', 'address' => 'Manila', 'year_graduated' => 2015, 'honors' => 'With Honors'],
+            ['student_id' => 2600001, 'level' => 'high_school', 'school_name' => 'Mapua High School', 'address' => 'Manila', 'year_graduated' => 2021, 'honors' => 'Valedictorian'],
+            ['student_id' => 2600002, 'level' => 'elementary', 'school_name' => 'San Jose Elementary School', 'address' => 'Quezon City', 'year_graduated' => 2016, 'honors' => null],
+            ['student_id' => 2600002, 'level' => 'high_school', 'school_name' => 'San Jose National High School', 'address' => 'Quezon City', 'year_graduated' => 2022, 'honors' => 'With High Honors'],
+            ['student_id' => 2600003, 'level' => 'elementary', 'school_name' => 'Ateneo de Manila Grade School', 'address' => 'Loyola Heights, Quezon City', 'year_graduated' => 2014, 'honors' => 'Salutatorian'],
+            ['student_id' => 2600003, 'level' => 'high_school', 'school_name' => 'Ateneo de Manila High School', 'address' => 'Loyola Heights, Quezon City', 'year_graduated' => 2020, 'honors' => 'With Honors'],
+            ['student_id' => 2600005, 'level' => 'elementary', 'school_name' => 'La Salle Green Hills', 'address' => 'Mandaluyong', 'year_graduated' => 2016, 'honors' => null],
+            ['student_id' => 2600005, 'level' => 'high_school', 'school_name' => 'La Salle Green Hills High School', 'address' => 'Mandaluyong', 'year_graduated' => 2022, 'honors' => 'With Honors'],
+            ['student_id' => 2600010, 'level' => 'elementary', 'school_name' => 'Pasig City Elementary School', 'address' => 'Pasig City', 'year_graduated' => 2015, 'honors' => 'With Honors'],
+            ['student_id' => 2600010, 'level' => 'high_school', 'school_name' => 'Pasig City Science High School', 'address' => 'Pasig City', 'year_graduated' => 2021, 'honors' => 'Valedictorian'],
+        ];
+        foreach ($academicHistories as $h) {
+            StudentAcademicHistory::create($h);
+        }
+
+        // Student Extra-Curriculars
+        $extraCurriculars = [
+            ['student_id' => 2600001, 'name' => 'Chess Club', 'role' => 'President', 'organization' => 'CCS Chess Club', 'start_year' => 2022, 'end_year' => null],
+            ['student_id' => 2600001, 'name' => 'Hackathon Team', 'role' => 'Team Lead', 'organization' => 'IT Society', 'start_year' => 2023, 'end_year' => null],
+            ['student_id' => 2600002, 'name' => 'Dance Troupe', 'role' => 'Member', 'organization' => 'CCS Cultural Arts', 'start_year' => 2022, 'end_year' => 2023],
+            ['student_id' => 2600003, 'name' => 'Robotics Club', 'role' => 'Vice President', 'organization' => 'CCS Robotics', 'start_year' => 2021, 'end_year' => null],
+            ['student_id' => 2600003, 'name' => 'Basketball Varsity', 'role' => 'Player', 'organization' => 'CCS Athletics', 'start_year' => 2020, 'end_year' => 2022],
+            ['student_id' => 2600005, 'name' => 'Programming Club', 'role' => 'Secretary', 'organization' => 'Code Club', 'start_year' => 2022, 'end_year' => null],
+            ['student_id' => 2600006, 'name' => 'Student Council', 'role' => 'Treasurer', 'organization' => 'CCS Student Government', 'start_year' => 2022, 'end_year' => 2023],
+            ['student_id' => 2600010, 'name' => 'Math Olympiad', 'role' => 'Participant', 'organization' => 'Science & Math Society', 'start_year' => 2021, 'end_year' => 2022],
+            ['student_id' => 2600014, 'name' => 'Photography Club', 'role' => 'Member', 'organization' => 'CCS Arts', 'start_year' => 2023, 'end_year' => null],
+        ];
+        foreach ($extraCurriculars as $ec) {
+            StudentExtraCurricular::create($ec);
+        }
+
+        // Student Violations
+        $violations = [
+            ['student_id' => 2600009, 'description' => 'Excessive absences in CS302', 'date' => '2023-10-05', 'penalty' => 'Written Warning', 'status' => 'resolved', 'remarks' => 'Student acknowledged and improved attendance'],
+            ['student_id' => 2600009, 'description' => 'Late submission of final project', 'date' => '2023-12-01', 'penalty' => '10% grade deduction', 'status' => 'resolved', 'remarks' => null],
+            ['student_id' => 2600019, 'description' => 'Disruptive behavior during lecture', 'date' => '2023-09-15', 'penalty' => 'Verbal Warning', 'status' => 'resolved', 'remarks' => 'Counseling session completed'],
+            ['student_id' => 2600007, 'description' => 'Academic dishonesty — copied lab report', 'date' => '2024-02-20', 'penalty' => 'Zero on the activity', 'status' => 'resolved', 'remarks' => 'Incident report filed'],
+            ['student_id' => 2600013, 'description' => 'Unauthorized use of lab equipment after hours', 'date' => '2024-03-10', 'penalty' => 'Suspension from lab for 1 week', 'status' => 'pending', 'remarks' => null],
+        ];
+        foreach ($violations as $v) {
+            StudentViolation::create($v);
+        }
+
+        // Student Skills
+        $skills = [
+            ['student_id' => 2600001, 'name' => 'Python', 'category' => 'Programming', 'proficiency' => 'advanced', 'description' => 'Data analysis and scripting'],
+            ['student_id' => 2600001, 'name' => 'React', 'category' => 'Web Development', 'proficiency' => 'intermediate', 'description' => 'Frontend component development'],
+            ['student_id' => 2600001, 'name' => 'Public Speaking', 'category' => 'Soft Skills', 'proficiency' => 'advanced', 'description' => null],
+            ['student_id' => 2600003, 'name' => 'Java', 'category' => 'Programming', 'proficiency' => 'advanced', 'description' => 'Android and enterprise applications'],
+            ['student_id' => 2600003, 'name' => 'Machine Learning', 'category' => 'Data Science', 'proficiency' => 'intermediate', 'description' => 'Familiar with scikit-learn and TensorFlow basics'],
+            ['student_id' => 2600005, 'name' => 'JavaScript', 'category' => 'Programming', 'proficiency' => 'intermediate', 'description' => 'Vanilla JS and Node.js'],
+            ['student_id' => 2600006, 'name' => 'UI/UX Design', 'category' => 'Design', 'proficiency' => 'intermediate', 'description' => 'Figma and Adobe XD'],
+            ['student_id' => 2600006, 'name' => 'Leadership', 'category' => 'Soft Skills', 'proficiency' => 'advanced', 'description' => null],
+            ['student_id' => 2600010, 'name' => 'SQL', 'category' => 'Database', 'proficiency' => 'advanced', 'description' => 'MySQL and PostgreSQL'],
+            ['student_id' => 2600010, 'name' => 'PHP', 'category' => 'Programming', 'proficiency' => 'intermediate', 'description' => 'Laravel framework'],
+            ['student_id' => 2600014, 'name' => 'C++', 'category' => 'Programming', 'proficiency' => 'beginner', 'description' => 'Basic algorithms and data structures'],
+            ['student_id' => 2600015, 'name' => 'Cloud (AWS)', 'category' => 'DevOps', 'proficiency' => 'beginner', 'description' => 'EC2, S3 basics'],
+        ];
+        foreach ($skills as $s) {
+            StudentSkill::create($s);
+        }
+
+        // Student Organizations
+        $organizations = [
+            ['student_id' => 2600001, 'organization_name' => 'Philippine Society of IT Students (PSITS)', 'position' => 'Chapter Representative', 'type' => 'Academic', 'start_year' => 2022, 'end_year' => null, 'is_active' => true],
+            ['student_id' => 2600003, 'organization_name' => 'Junior Philippine Computer Society (JPCS)', 'position' => 'Vice President', 'type' => 'Academic', 'start_year' => 2021, 'end_year' => null, 'is_active' => true],
+            ['student_id' => 2600003, 'organization_name' => 'IEEE Student Branch', 'position' => 'Member', 'type' => 'Professional', 'start_year' => 2022, 'end_year' => null, 'is_active' => true],
+            ['student_id' => 2600006, 'organization_name' => 'CCS Student Council', 'position' => 'Treasurer', 'type' => 'Student Government', 'start_year' => 2022, 'end_year' => 2023, 'is_active' => false],
+            ['student_id' => 2600006, 'organization_name' => 'Association of Computer Science Students', 'position' => 'Secretary', 'type' => 'Academic', 'start_year' => 2023, 'end_year' => null, 'is_active' => true],
+            ['student_id' => 2600010, 'organization_name' => 'Philippine Society of IT Students (PSITS)', 'position' => 'President', 'type' => 'Academic', 'start_year' => 2023, 'end_year' => null, 'is_active' => true],
+            ['student_id' => 2600015, 'organization_name' => 'Cloud Computing Club', 'position' => 'Member', 'type' => 'Technical', 'start_year' => 2023, 'end_year' => null, 'is_active' => true],
+            ['student_id' => 2600017, 'organization_name' => 'Junior Philippine Computer Society (JPCS)', 'position' => 'Member', 'type' => 'Academic', 'start_year' => 2022, 'end_year' => null, 'is_active' => true],
+        ];
+        foreach ($organizations as $o) {
+            StudentOrganization::create($o);
         }
     }
 }
