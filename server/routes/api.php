@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\CurriculumController;
 use App\Http\Controllers\Api\ScheduleController;
 use App\Http\Controllers\Api\FacultyAssignmentController;
 use App\Http\Controllers\Api\DashboardController;
+use App\Http\Controllers\Api\StudentAcademicHistoryController;
 
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -36,4 +37,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('curricula',           CurriculumController::class);
     Route::apiResource('schedules',           ScheduleController::class);
     Route::apiResource('faculty-assignments', FacultyAssignmentController::class);
+
+    Route::get('students/{student}/academic-history',              [StudentAcademicHistoryController::class, 'index']);
+    Route::post('students/{student}/academic-history',             [StudentAcademicHistoryController::class, 'store']);
+    Route::put('students/{student}/academic-history/{history}',    [StudentAcademicHistoryController::class, 'update']);
+    Route::delete('students/{student}/academic-history/{history}', [StudentAcademicHistoryController::class, 'destroy']);
 });
