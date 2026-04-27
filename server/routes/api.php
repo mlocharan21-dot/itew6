@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\FacultyAssignmentController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\StudentAcademicHistoryController;
 use App\Http\Controllers\Api\StudentExtraCurricularController;
+use App\Http\Controllers\Api\StudentViolationController;
 
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -48,4 +49,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('students/{student}/extra-curriculars',                     [StudentExtraCurricularController::class, 'store']);
     Route::put('students/{student}/extra-curriculars/{extraCurricular}',    [StudentExtraCurricularController::class, 'update']);
     Route::delete('students/{student}/extra-curriculars/{extraCurricular}', [StudentExtraCurricularController::class, 'destroy']);
+
+    Route::get('students/{student}/violations',               [StudentViolationController::class, 'index']);
+    Route::post('students/{student}/violations',              [StudentViolationController::class, 'store']);
+    Route::put('students/{student}/violations/{violation}',   [StudentViolationController::class, 'update']);
+    Route::delete('students/{student}/violations/{violation}',[StudentViolationController::class, 'destroy']);
 });
